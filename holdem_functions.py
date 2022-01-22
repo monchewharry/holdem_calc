@@ -1,12 +1,17 @@
+import itertools
+from unittest import result
+
 # Constants
 suit_index_dict = {"s": 0, "c": 1, "h": 2, "d": 3}
+suit_index_dict2 = {"s": "♠", "c": "♣", "h": "♥", "d": "♦"}
 reverse_suit_index = ("s", "c", "h", "d")
+
 val_string = "AKQJT98765432"
 hand_rankings = ("High Card", "Pair", "Two Pair", "Three of a Kind",
                  "Straight", "Flush", "Full House", "Four of a Kind",
                  "Straight Flush", "Royal Flush")
 suit_value_dict = {"T": 10, "J": 11, "Q": 12, "K": 13, "A": 14}
-for num in xrange(2, 10):
+for num in range(2, 10):
     suit_value_dict[str(num)] = num
 
 class Card:
@@ -48,7 +53,7 @@ def generate_deck(hole_cards, board):
 
 # Generate all possible hole card combinations
 def generate_hole_cards(deck):
-    import itertools
+    
     return itertools.combinations(deck, 2)
 
 # Generate num_iterations random boards
@@ -56,12 +61,12 @@ def generate_random_boards(deck, num_iterations, board_length):
     import random
     import time
     random.seed(time.time())
-    for _ in xrange(num_iterations):
+    for _ in range(num_iterations):
         yield random.sample(deck, 5 - board_length)
 
 # Generate all possible boards
 def generate_exhaustive_boards(deck, num_iterations, board_length):
-    import itertools
+    
     return itertools.combinations(deck, 5 - board_length)
 
 # Returns a board of cards all with suit = flush_index
@@ -248,21 +253,37 @@ def compare_hands(result_list):
     return winning_player_index
 
 # Print results
+def hole_card_readable(hole_card):
+    v1, v2 = hole_card
+    s1,s2 = str(v1)[1],str(v2)[1]
+    suit1 = suit_index_dict2[s1]
+    suit2 = suit_index_dict2[s2]    
+    return (str(v1)[0]+suit1, str(v2)[0]+suit2)
+
 def print_results(hole_cards, winner_list, result_histograms):
     float_iterations = float(sum(winner_list))
-    print "Winning Percentages:"
+    print('Hint: c (clubs ♣), d (diamonds ♦), h (hearts ♥) and s (spades ♠)')
+    
+    print("Winning Percentages:")
     for index, hole_card in enumerate(hole_cards):
         winning_percentage = float(winner_list[index + 1]) / float_iterations
         if hole_card == (None, None):
-            print "(?, ?) : ", winning_percentage
+            print("(?, ?) : ", winning_percentage)
         else:
-            print hole_card, ": ", winning_percentage
-    print "Ties: ", float(winner_list[0]) / float_iterations, "\n"
+            print(hole_card_readable(hole_card), ": ", winning_percentage)
+    print("Ties: ", float(winner_list[0]) / float_iterations, "\n")
     for player_index, histogram in enumerate(result_histograms):
-        print "Player" + str(player_index + 1) + " Histogram: "
-        for index, elem in enumerate(histogram):
-            print hand_rankings[index], ": ", float(elem) / float_iterations
-        print
+        print("Player" + str(player_index + 1) + " Histogram: ")
+        result= [(hand_rankings[index], float(elem)/float_iterations) for index, elem in enumerate(histogram)]
+        result.sort(key=lambda y: y[1], reverse=True)
+        for rr in result:
+            print(f"{rr[0]}: {rr[1]}")
+        # for index, elem in enumerate(histogram):
+        #     print( hand_rankings[index], ": ", float(elem) / float_iterations)
+        print()
+    print("Small to Large:\n") 
+    [print(tt) for tt in list(zip(hand_rankings,
+                   ["单牌","一对","两对","三同","顺子","同花","3+2","4+1","同花顺","皇家同花顺"]))]
 
 # Returns the winning percentages
 def find_winning_percentage(winner_list):
