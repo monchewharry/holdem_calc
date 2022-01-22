@@ -20,6 +20,57 @@ Usage
 -----
 I've listed a few examples showing how to use the Holdem Calculator. Note that you can mix and match command line options to suit your needs. See the bottom example in this section to see how to use the multiprocess Holdem Calculator for faster computations.
 
+### Check my updates effect:  
+
+```
+holdem_calc git:(master) python holdem_calc.py --input input_file --exact
+Hint: c (clubs ♣), d (diamonds ♦), h (hearts ♥) and s (spades ♠)
+Winning Percentages:
+('A♦', 'A♠') :  0.8425559947299077
+(?, ?) :  0.15656098449807979
+Ties:  0.0008830207720124464 
+
+Player1 Histogram: 
+Pair: 0.49953746530989823
+Two Pair: 0.36632747456059206
+Three of a Kind: 0.0666049953746531
+Flush: 0.041628122109158186
+Full House: 0.02497687326549491
+Four of a Kind: 0.0009250693802035153
+High Card: 0.0
+Straight: 0.0
+Straight Flush: 0.0
+Royal Flush: 0.0
+
+Player2 Histogram: 
+Pair: 0.4544389314047038
+Two Pair: 0.21152131864435286
+High Card: 0.1964679169119502
+Straight: 0.05207860286491184
+Three of a Kind: 0.03915566394752334
+Flush: 0.027864211027948307
+Full House: 0.016701707173492557
+Straight Flush: 0.0009811341911249404
+Four of a Kind: 0.0007905138339920949
+Royal Flush: 0.0
+
+Small to Large:
+
+('High Card', '单牌')
+('Pair', '一对')
+('Two Pair', '两对')
+('Three of a Kind', '三同')
+('Straight', '顺子')
+('Flush', '同花')
+('Full House', '3+2')
+('Four of a Kind', '4+1')
+('Straight Flush', '同花顺')
+('Royal Flush', '皇家同花顺')
+-----------------------------------
+
+Time elapsed(seconds):  6.138875961303711
+```
+
 ### Default use case:
 
 	$ python holdem_calc.py Ad Kd Qc Qs
