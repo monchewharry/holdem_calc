@@ -25,7 +25,9 @@ I've listed a few examples showing how to use the Holdem Calculator. Note that y
 ### Check my updates effect: (Python 3)  
 
 ```
-holdem_calc git:(master) python holdem_calc.py --input input_file --exact
+(myML) ➜  holdem_calc git:(master) cat input_file     
+Ad As ? ? | 8d 9d 2c
+(myML) ➜  holdem_calc git:(master) python holdem_calc.py --input input_file --exact
 Hint: c (clubs ♣), d (diamonds ♦), h (hearts ♥) and s (spades ♠)
 Winning Percentages:
 ('A♦', 'A♠') :  0.8425559947299077
@@ -70,7 +72,7 @@ Small to Large:
 ('Royal Flush', '皇家同花顺')
 -----------------------------------
 
-Time elapsed(seconds):  6.138875961303711
+Time elapsed(seconds):  6.092583894729614
 ```
 
 ### Default use case:
