@@ -20,7 +20,7 @@ Usage
 -----
 I've listed a few examples showing how to use the Holdem Calculator. Note that you can mix and match command line options to suit your needs. See the bottom example in this section to see how to use the multiprocess Holdem Calculator for faster computations.
 
-### Check my updates effect:  
+### Check my updates effect: (Python 3)  
 
 ```
 holdem_calc git:(master) python holdem_calc.py --input input_file --exact
